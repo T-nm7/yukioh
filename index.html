@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ★ここを変更: 5秒後に遷移、URLを本来のLPに変える -->
+  <meta http-equiv="refresh" content="5; url=https://your-lp-url.com/">
+  <title>ページを移動しています...</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #333;
+    }
+    .container {
+      text-align: center;
+      padding: 40px;
+    }
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #e0e0e0;
+      border-top: 4px solid #4CAF50;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 24px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    h1 { font-size: 20px; margin-bottom: 12px; }
+    p  { font-size: 14px; color: #777; margin-bottom: 20px; }
+    .countdown {
+      font-size: 36px;
+      font-weight: bold;
+      color: #4CAF50;
+    }
+    a { color: #4CAF50; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="spinner"></div>
+    <h1>ページを移動しています</h1>
+    <p>まもなく自動的に移動します。<br>移動しない場合は下のリンクをタップしてください。</p>
+    <div class="countdown" id="count">5</div>
+    <br><br>
+    <!-- ★ここも本来のLPのURLに変える -->
+    <a href="https://your-lp-url.com/">こちらをタップ</a>
+  </div>
+
+  <script>
+    // ★遷移先URLをここに設定
+    const TARGET_URL = "https://your-lp-url.com/";
+    const SECONDS   = 5; // カウントダウン秒数
+
+    let count = SECONDS;
+    const el = document.getElementById("count");
+
+    const timer = setInterval(() => {
+      count--;
+      el.textContent = count;
+      if (count <= 0) {
+        clearInterval(timer);
+        window.location.href = TARGET_URL;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
